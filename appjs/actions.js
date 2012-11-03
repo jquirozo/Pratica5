@@ -23,7 +23,22 @@ function eventHistory(action){
 //Contactos en el dispositivo
 function readContacts(){
 	var options = new ContactFindOptions();
-	navigator.contacts.find(["*"], function(contactoss){
+	options.filter=""; 
+	var fields = ["displayName", "name"];	
+	navigator.contacts.find(fields, onSuccess, onError, options);
+	// onSuccess: Get a snapshot of the current contacts
+    var contactosList='';
+	function onSuccess(contacts) {
+        for (var i=0; i<contacts.length; i++) {
+            contactosList += "Display Name = " + contacts[i].displayName;
+			$('#contactsList').html(contactosList);
+        }
+    }
+    // onError: Failed to get the contacts
+    function onError(contactError) {
+        alert('onError!');
+    }
+	/*navigator.contacts.find(["*"], function(contactoss){
 		var contactosList='';
 		for(i=0;i<contactoss.length;i++){
 			var contactoo = contactoss[i];
@@ -32,7 +47,8 @@ function readContacts(){
 		}
 	}, function(){
 		pgAlert('No se han podido leer los contactos');
-	},options);
+	},options);*/
+	
 }
 //otra forma
 /*function leerContactos(){
@@ -99,6 +115,7 @@ function newContact(){
 	}
 }
 //Lectura de archivos
+/*
 function readFiles(){
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
 		fileSystem.root.getFile('read-write.txt', null, function(archivo){
@@ -119,9 +136,9 @@ function readFiles(){
 	function(err){
 		pgAlert("No se pudo acceder al sistema de archivos");
 	});
-}
+}*/
 //Escritura de archivos
-function writeFiles(){
+/*function writeFiles(){
 	var content = $('#fileContent').val();
 	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem){
 		fileSystem.root.getFile('read-write.txt', { create: true }, function(archivo){
@@ -140,39 +157,7 @@ function writeFiles(){
 		pgAlert("No se pudo acceder al sistema de archivos 2");
 	});
 }
-/*$(document).ready(function(){
-	document.addEventListener("deviceready", function(){
-		deviceData();//Datos del dispositivo
-		//Eventos
-			document.addEventListener("pause", function(){//Al pausar la aplicaci�n
-				eventHistory('La aplicaci&oacute;n se paus&oacute;');
-			}, false);
-			document.addEventListener("resume", function(){//Al volver a la aplicaci�n
-				eventHistory('La aplicaci&oacute;n se reinici&oacute;');
-			}, false);
-			document.addEventListener("online", function(){//Al conectarse a la red
-				eventHistory('La aplicaci&oacute;n se ha conectado');
-			}, false);
-			document.addEventListener("offline", function(){//Al desconectarse de la red
-				eventHistory('La aplicaci&oacute;n se ha desconectado');
-			}, false);
-		
-		readContacts();//Leer Contactos
-		readFiles();//Leer Archivos
-		//Acciones de formularios
-			$('.sendForm').click(function(){
-				switch($(this).parents('ul').attr('id')){
-					case 'newContact':
-						newContact();
-						break;
-					case 'playFiles':
-						writeFiles();
-						break;
-				}
-				
-			});
-	}, false);
-});*/
+*/
 $(document).ready(function(){
 	document.addEventListener("deviceready",function(){
 		//Informaci�n del dispositivo
