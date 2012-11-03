@@ -133,10 +133,10 @@ function writeFiles(){
 				pgAlert("No existe el archivo, agrega contenido y luego presiona en Escribir");
 			});
 		}, function(err){
-			pgAlert("No se pudo acceder al sistema de archivos");
+			pgAlert("No se pudo acceder al sistema de archivos 1");
 		});
 	}, function(err){
-		pgAlert("No se pudo acceder al sistema de archivos");
+		pgAlert("No se pudo acceder al sistema de archivos 2");
 	});
 }
 /*$(document).ready(function(){
