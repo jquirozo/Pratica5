@@ -22,16 +22,17 @@ function eventHistory(action){
 }*/
 //Contactos en el dispositivo
 function readContacts(){
+	var options = new ContactFindOptions();
 	navigator.contacts.find(["*"], function(contactoss){
 		var contactosList='';
 		for(i=0;i<contactoss.length;i++){
 			var contactoo = contactoss[i];
-			contactosList += '<li><a href="tel://'+contactoo.phoneNumbers[0].value+'">'+contactoo.name.formatted+'</a></li>';
+			contactosList = '<li><a href="tel://'+contactoo.phoneNumbers[0].value+'">'+contactoo.name.formatted+'</a></li>';
 			$('#contactsList').html(contactosList);
 		}
 	}, function(){
 		pgAlert('No se han podido leer los contactos');
-	});
+	},options);
 }
 //otra forma
 /*function leerContactos(){
