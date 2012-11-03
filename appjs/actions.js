@@ -34,7 +34,7 @@ function readContacts(){
 	});
 }
 //otra forma
-function leerContactos(){
+/*function leerContactos(){
 	navigator.contacts.find(["*"],function(contactos){
 		var ListaContactos = '';
 		for(i=0;i<contactoss.lenght;i++){
@@ -45,7 +45,7 @@ function leerContactos(){
 		},function(){
 			pgAlert("No se pueden leer los contactos");
 			});
-	}
+	}*/
 //Crear contactos
 function newContact(){
 	if($('#contDispley').val() != '' && $('#contName').val() != '' && $('#contFamily').val() != '' && $('#contPhone').val() != ''){
