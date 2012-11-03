@@ -8,46 +8,18 @@ function pgAlert(mess){
 	}
 	navigator.notification.alert(mess, error, title, btnName);
 }
-//Datos del dispositivo
-/*function deviceData(){
-	$('#devic table td').eq(1).text(device.name);
-	$('#devic table td').eq(3).text(device.phonegap);
-	$('#devic table td').eq(5).text(device.platform);
-	$('#devic table td').eq(7).text(device.version);
-	$('#devic table td').eq(9).text(device.uuid);
-}
-//Historial de Eventos
-function eventHistory(action){
-	$('#eventsHistory').append('<li>'+action+'</li>');
-}*/
 //Contactos en el dispositivo
 function readContacts(){
-	var options = new ContactFindOptions();
-	options.filter=""; 
-	var fields = ["displayName", "name"];	
-	navigator.contacts.find(fields, onSuccess, onError, options);
-	// onSuccess: Get a snapshot of the current contacts
-    var contactosList='';
-	function onSuccess(contacts) {
-        for (var i=0; i<contacts.length; i++) {
-            contactosList += "Display Name = " + contacts[i].displayName;
-			$('#contactsList').html(contactosList);
-        }
-    }
-    // onError: Failed to get the contacts
-    function onError(contactError) {
-        alert('onError!');
-    }
-	/*navigator.contacts.find(["*"], function(contactoss){
+	 navigator.contacts.find(["*"], function(contactoss){
 		var contactosList='';
 		for(i=0;i<contactoss.length;i++){
 			var contactoo = contactoss[i];
-			contactosList = '<li><a href="tel://'+contactoo.phoneNumbers[0].value+'">'+contactoo.name.formatted+'</a></li>';
+		contactosList += '<li><a href="tel://'+contactoo.phoneNumbers[0].value+'">'+contactoo.name.formatted+'</a></li>';
 			$('#contactsList').html(contactosList);
 		}
 	}, function(){
 		pgAlert('No se han podido leer los contactos');
-	},options);*/
+	},options);
 	
 }
 //otra forma
@@ -66,7 +38,6 @@ function readContacts(){
 //Crear contactos
 function newContact(){
 	if($('#contDispley').val() != '' && $('#contName').val() != '' && $('#contFamily').val() != '' && $('#contPhone').val() != ''){
-		//alert($('#contDispley').val()+'-'+$('#contName').val()+'-'+$('#contFamily').val()+'-'+$('#contPhone').val());
 		var contacto = navigator.contacts.create();
 		//Nombre para mostrar
 		contacto.displayName = $('#contDispley').val();
